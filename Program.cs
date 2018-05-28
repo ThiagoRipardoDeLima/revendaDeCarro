@@ -77,6 +77,40 @@ namespace RevendaDeCarro
                         Console.WriteLine("Erro inesperado: " + e.Message);
                     }
                 }
+                else if(opcao == 5)
+                {
+                    try
+                    {
+                        Tela.cadastrarAcessorio();
+                    }
+                    catch(ModelException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Erro inesperado: " + e.Message);
+                    }
+                }
+                else if (opcao == 6)
+                {
+                    try
+                    {
+                        Tela.mostraDetalheCarro();
+                    }
+                    catch(ModelException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+                else if (opcao == 7)
+                {
+                    Tela.encerrarPrograma();
+                }
+                else
+                {
+                    Console.WriteLine("Opção invalida!");
+                }
 
                 Console.ReadLine();
             }
@@ -94,12 +128,18 @@ namespace RevendaDeCarro
             Volkswagem.adicionaCarros(new Carro(101, "Fusca", 1980, 5000.00, Volkswagem));
             Volkswagem.adicionaCarros(new Carro(102, "Golf", 2016, 60000.00, Volkswagem));
             Volkswagem.adicionaCarros(new Carro(103, "Fox", 2017, 30000.00, Volkswagem));
+            carros.Add(new Carro(101, "Fusca", 1980, 5000.00, Volkswagem));
+            carros.Add(new Carro(102, "Golf", 2016, 60000.00, Volkswagem));
+            carros.Add(new Carro(103, "Fox", 2017, 30000.00, Volkswagem));
 
             Marca GM = new Marca(1002, "General Motors", "Estados Unidos");
             marcas.Add(GM);
             GM.adicionaCarros(new Carro(104, "Cruze", 2016, 30000.00, GM));
             GM.adicionaCarros(new Carro(105, "Cobalt", 2015, 25000.00, GM));
             GM.adicionaCarros(new Carro(106, "Cobalt", 2017, 35000.00, GM));
+            carros.Add(new Carro(104, "Cruze", 2016, 30000.00, GM));
+            carros.Add(new Carro(105, "Cobalt", 2015, 25000.00, GM));
+            carros.Add(new Carro(106, "Cobalt", 2017, 35000.00, GM));
         }
     }
 }

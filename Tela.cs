@@ -44,7 +44,7 @@ namespace RevendaDeCarro
                 throw new ModelException(Program.marcas[pos].nome + ":  não encontrado nenhum carro.");
 
             foreach(Carro carro in Program.marcas[pos].carros)
-                Console.WriteLine(carro.ToString());
+                Console.WriteLine(carro);
         }
 
         public static void cadastrarMarca()
@@ -89,15 +89,49 @@ namespace RevendaDeCarro
             Carro carro = new Carro(codCarro, modelo, ano, preco, Program.marcas[pos]);
 
             Program.marcas[pos].adicionaCarros(carro);
+            Program.carros.Add(carro);
 
             Console.WriteLine("Carro cadastrado com sucesso!");
         }
 
-        public static void cadastrarAcessorio() { }
+        public static void cadastrarAcessorio()
+        {
+            Console.WriteLine("Digite os dados do acessório:");
+            Console.Write("Carro (código): ");
+            int codCarro = int.Parse(Console.ReadLine());
 
-        public static void mostraDetalheCarro() { }
+            int pos = Program.carros.FindIndex(x => x.codigo == codCarro);
+            if (pos == -1)
+                throw new ModelException("Nenhum carro encontrado.");
+
+            Console.Write("Descrição: ");
+            string descricao = Console.ReadLine();
+
+            Console.Write("Preço: ");
+            double preco = double.Parse(Console.ReadLine());
+
+            Acessorio acessorio = new Acessorio(descricao, preco, Program.carros[pos]);
+            Program.carros[pos].adicionarAcessorio(acessorio);
+
+        }
+
+        public static void mostraDetalheCarro()
+        {
+            Console.Write("Digite o código do carro: ");
+            int codCarro = int.Parse(Console.ReadLine());
+
+            int pos = Program.carros.FindIndex(x => x.codigo == codCarro);
+            if (pos == -1)
+                throw new ModelException("Nenhum carro encontrado.");
+
+            Console.WriteLine(Program.carros[pos]);
+        }
         
-        public static void encerrarPrograma() { }
+        public static void encerrarPrograma()
+        {
+            Console.WriteLine("Programa encerrado!");
+            Environment.Exit(0);
+        }
 
     }
 }

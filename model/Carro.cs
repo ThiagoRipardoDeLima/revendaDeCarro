@@ -38,17 +38,22 @@ namespace RevendaDeCarro.model
 
         public override string ToString()
         {
-            return codigo
-                + ", "
-                + modelo
-                + ", Ano: "
-                + ano
-                + ", Preço básico: "
-                + precoBasico.ToString("F2", CultureInfo.InvariantCulture)
-                + ", Preço total: "
-                + precoTotal().ToString("F2", CultureInfo.InvariantCulture);
-        }
+            string carro = "";
 
+            carro = codigo + ", " + modelo + ", Ano: " + ano
+                + ", Preço básico: " + precoBasico.ToString("F2", CultureInfo.InvariantCulture)
+                + ", Preço total: " + precoTotal().ToString("F2", CultureInfo.InvariantCulture)
+                + "\n";
+
+            if (acessorios.Count > 0)
+            {
+                carro += "Acessórios: \n";
+                foreach (Acessorio acessorio in acessorios)
+                    carro += acessorio + "\n";
+            }
+            return carro;
+        }
+        
         public int CompareTo(object obj)
         {
             Carro outroCarro = (Carro)obj;
